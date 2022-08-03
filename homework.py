@@ -1,5 +1,6 @@
 class InfoMessage:
     """Информационное сообщение о тренировке."""
+
     def __init__(self,
                  training_type: str,
                  duration: float,
@@ -74,9 +75,9 @@ class Running(Training):
                  weight: float,
                  coeff_calorie_1: int = 18,
                  coeff_calorie_2: int = 20) -> None:
-        """Наследуем функциональность конструктора из класса-родителя."""
+        # Наследуем функциональность конструктора из класса-родителя.
         super().__init__(action, duration, weight)
-        """Добавляем новую функциональность: свойства coeff_calorie_1 и 2."""
+        # Добавляем новую функциональность: свойства coeff_calorie_1 и 2.
         self.coeff_calorie_1 = coeff_calorie_1
         self.coeff_calorie_2 = coeff_calorie_2
 
@@ -100,10 +101,10 @@ class SportsWalking(Training):
                  coeff_calorie_3: float = 0.035,
                  coeff_calorie_4: float = 0.029,
                  coeff_speed: int = 2) -> None:
-        """Наследуем функциональность конструктора из класса-родителя."""
+        # Наследуем функциональность конструктора из класса-родителя.
         super().__init__(action, duration, weight)
-        """Добавляем новую функциональность: свойства coeff_calorie_3 и 4,
-           coeff_speed, height."""
+        # Добавляем новую функциональность: свойства coeff_calorie_3 и 4,
+        # coeff_speed, height.
         self.coeff_calorie_3 = coeff_calorie_3
         self.coeff_calorie_4 = coeff_calorie_4
         self.coeff_speed = coeff_speed
