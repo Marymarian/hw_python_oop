@@ -29,7 +29,7 @@ class Training:
 
     LEN_STEP: float = 0.65
     M_IN_KM: int = 1000
-    duration_in_minutes: int = 60
+    DURATION_IN_MINUTES: int = 60
 
     def __init__(self,
                  action: int,
@@ -70,22 +70,15 @@ class Training:
 class Running(Training):
     """Тренировка: бег."""
 
-    coeff_calorie_1: int = 18
-    coeff_calorie_2: int = 20
-
-    def __init__(self,
-                 action: int,
-                 duration: float,
-                 weight: float) -> None:
-        # Наследуем функциональность конструктора из класса-родителя.
-        super().__init__(action, duration, weight)
+    COEFF_CALORIE_1: int = 18
+    COEFF_CALORIE_2: int = 20
 
     def get_spent_calories(self) -> float:
         """Получаем количество затраченных калорий."""
 
-        spent_calories_run = ((self.coeff_calorie_1 * self.get_mean_speed()
-                              - self.coeff_calorie_2) * self.weight
-                              / self.M_IN_KM * self.duration_in_minutes
+        spent_calories_run = ((self.COEFF_CALORIE_1 * self.get_mean_speed()
+                              - self.COEFF_CALORIE_2) * self.weight
+                              / self.M_IN_KM * self.DURATION_IN_MINUTES
                               * self.duration)
         return spent_calories_run
 
@@ -93,29 +86,27 @@ class Running(Training):
 class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
 
-    coeff_calorie_3: float = 0.035
-    coeff_calorie_4: float = 0.029
-    coeff_speed: int = 2
+    COEFF_CALORIE_1: float = 0.035
+    COEFF_CALORIE_2: float = 0.029
+    COEFF_SPEED: int = 2
 
     def __init__(self,
                  action: int,
                  duration: float,
                  weight: float,
                  height: float) -> None:
-        # Наследуем функциональность конструктора из класса-родителя.
         super().__init__(action, duration, weight)
-        # Добавляем новую функциональность: свойство height.
         self.height = height
 
     def get_spent_calories(self) -> float:
         """Получаем количество затраченных калорий."""
 
-        spent_calories_wlk = ((self.coeff_calorie_3
+        spent_calories_wlk = ((self.COEFF_CALORIE_1
                                * self.weight
-                               + (self.get_mean_speed() ** self.coeff_speed
+                               + (self.get_mean_speed() ** self.COEFF_SPEED
                                   // self.height)
-                               * self.coeff_calorie_4 * self.weight)
-                              * self.duration_in_minutes * self.duration)
+                               * self.COEFF_CALORIE_2 * self.weight)
+                              * self.DURATION_IN_MINUTES * self.duration)
         return spent_calories_wlk
 
 
@@ -123,8 +114,8 @@ class Swimming(Training):
     """Тренировка: плавание."""
 
     LEN_STEP: float = 1.38
-    coeff_calorie_5: float = 1.1
-    coeff_calorie_6: float = 2.0
+    COEFF_CALORIE_1: float = 1.1
+    COEFF_CALORIE_2: float = 2.0
 
     def __init__(self,
                  action: int,
@@ -132,9 +123,7 @@ class Swimming(Training):
                  weight: float,
                  length_pool: float,
                  count_pool: int) -> None:
-        # Наследуем функциональность конструктора из класса-родителя."""
         super().__init__(action, duration, weight)
-        # Добавляем новую функциональность: свойства length_pool и count_pool.
         self.length_pool = length_pool
         self.count_pool = count_pool
 
@@ -148,8 +137,8 @@ class Swimming(Training):
     def get_spent_calories(self) -> float:
         """Получаем количество затраченных калорий."""
 
-        spent_calories_swm = ((self.get_mean_speed() + self.coeff_calorie_5)
-                              * self.coeff_calorie_6 * self.weight)
+        spent_calories_swm = ((self.get_mean_speed() + self.COEFF_CALORIE_1)
+                              * self.COEFF_CALORIE_2 * self.weight)
         return spent_calories_swm
 
 
